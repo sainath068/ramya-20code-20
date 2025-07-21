@@ -179,28 +179,59 @@ export default function WorkingDashboard() {
           </div>
 
                     <div className="flex items-center space-x-4">
-            <div className="text-sm text-gray-300">
-              <span>Welcome, </span>
-              <span className="font-medium text-white">{user.username}</span>
+            {/* Profile Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-medium text-white">
+                  {getInitials(user.username)}
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-medium text-white">{user.username}</p>
+                  <p className="text-xs text-gray-400">{user.email}</p>
+                </div>
+                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Dropdown Menu */}
+              {isProfileDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-sm font-medium text-white">
+                        {getInitials(user.username)}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">{user.username}</p>
+                        <p className="text-xs text-gray-500">{user.email}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link
+                    to="/profile"
+                    className="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    onClick={() => setIsProfileDropdownOpen(false)}
+                  >
+                    <User className="w-4 h-4" />
+                    <span>My Profile</span>
+                  </Link>
+
+                  <button
+                    onClick={() => {
+                      setIsProfileDropdownOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full flex items-center space-x-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Log out</span>
+                  </button>
+                </div>
+              )}
             </div>
-
-            {/* Profile Button */}
-            <button
-              onClick={openProfileModal}
-              className="flex items-center space-x-1 px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700"
-              title="Edit Profile"
-            >
-              <Settings className="w-4 h-4" />
-              <span>Profile</span>
-            </button>
-
-            <button
-              onClick={handleLogout}
-              className="flex items-center space-x-1 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-              <LogOut className="w-4 h-4" />
-              <span>Logout</span>
-            </button>
           </div>
         </div>
       </header>
