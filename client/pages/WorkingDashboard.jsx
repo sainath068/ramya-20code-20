@@ -50,6 +50,8 @@ export default function WorkingDashboard() {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
   const [editingTask, setEditingTask] = useState(null);
 
