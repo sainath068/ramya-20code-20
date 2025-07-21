@@ -126,8 +126,15 @@ export default function WorkingDashboard() {
     setIsUserModalOpen(false);
   };
 
+  const confirmDeleteUser = (userId, username) => {
+    setDeleteTarget({ type: 'user', id: userId, name: username });
+    setIsDeleteConfirmOpen(true);
+  };
+
   const deleteUser = (userId) => {
     setUsers(users.filter((u) => u.id !== userId));
+    setIsDeleteConfirmOpen(false);
+    setDeleteTarget(null);
   };
 
   // Task management functions
