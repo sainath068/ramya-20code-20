@@ -10,6 +10,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import TestDashboard from "./pages/TestDashboard";
+import SimpleTest from "./pages/SimpleTest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
