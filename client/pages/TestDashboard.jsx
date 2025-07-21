@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import FixedDashboard from "./FixedDashboard";
+import WorkingDashboard from "./WorkingDashboard";
 
 export default function TestDashboard() {
   const { login } = useAuth();
@@ -15,5 +15,5 @@ export default function TestDashboard() {
     });
   }, [login]);
 
-  return <FixedDashboard />;
+  return <WorkingDashboard />;
 }
