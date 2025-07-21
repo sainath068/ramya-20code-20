@@ -502,7 +502,7 @@ export default function WorkingDashboard() {
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => deleteTask(task.id)}
+                              onClick={() => confirmDeleteTask(task.id, task.title)}
                               className="text-red-400 hover:text-red-300"
                             >
                               <Trash2 className="w-4 h-4" />
