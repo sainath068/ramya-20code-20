@@ -22,7 +22,6 @@ const AppRoutes = () => {
       <Route path="/" element={!user ? <Login /> : <WorkingDashboard />} />
       <Route path="/dashboard" element={!user ? <Login /> : <WorkingDashboard />} />
       <Route path="/profile" element={!user ? <Login /> : <Profile />} />
-      <Route path="/profile-test" element={<ProfilePageTest />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
