@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import Dashboard from "./Dashboard";
+import SimpleDashboard from "./SimpleDashboard";
 
 export default function TestDashboard() {
   const { login } = useAuth();
@@ -9,11 +9,11 @@ export default function TestDashboard() {
     // Auto-login for testing
     login({
       id: 1,
-      email: "admin@example.com", 
+      email: "admin@example.com",
       username: "Admin",
       role: "admin"
     });
   }, [login]);
 
-  return <Dashboard />;
+  return <SimpleDashboard />;
 }
