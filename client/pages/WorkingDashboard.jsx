@@ -51,6 +51,14 @@ export default function WorkingDashboard() {
     logout();
   };
 
+  const getInitials = (name) => {
+    return name
+      .split(" ")
+      .map(n => n[0])
+      .join("")
+      .toUpperCase();
+  };
+
   // User management functions
   const openAddUserModal = () => {
     setUserForm({ username: "", email: "", password: "", role: "user" });
