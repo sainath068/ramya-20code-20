@@ -9,7 +9,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import WorkingDashboard from "./pages/WorkingDashboard";
-import AdminTestPage from "./pages/AdminTestPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
