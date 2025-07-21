@@ -17,11 +17,9 @@ const AppRoutes = () => {
   const { user } = useAuth();
 
   return (
-                    <Routes>
+                        <Routes>
       <Route path="/" element={!user ? <Login /> : <WorkingDashboard />} />
       <Route path="/dashboard" element={!user ? <Login /> : <WorkingDashboard />} />
-      <Route path="/profile-demo" element={<ProfileDemo />} />
-      <Route path="/profile-test" element={<ProfileTest />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
