@@ -765,6 +765,59 @@ export default function WorkingDashboard() {
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteConfirmOpen && deleteTarget && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4 border border-red-600">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+                <Trash2 className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">Confirm Delete</h3>
+                <p className="text-sm text-gray-300">This action cannot be undone</p>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-white mb-2">
+                Are you sure you want to delete this {deleteTarget.type}?
+              </p>
+              <div className="bg-gray-700 p-3 rounded border-l-4 border-red-500">
+                <p className="text-sm text-gray-300">
+                  <span className="font-medium text-white">{deleteTarget.type === 'user' ? 'User' : 'Task'}:</span> {deleteTarget.name}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={() => {
+                  setIsDeleteConfirmOpen(false);
+                  setDeleteTarget(null);
+                }}
+                className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  if (deleteTarget.type === 'user') {
+                    deleteUser(deleteTarget.id);
+                  } else {
+                    deleteTask(deleteTarget.id);
+                  }
+                }}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 flex items-center space-x-2"
+              >
+                <Trash2 className="w-4 h-4" />
+                <span>Delete {deleteTarget.type === 'user' ? 'User' : 'Task'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
