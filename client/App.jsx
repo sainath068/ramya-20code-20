@@ -44,4 +44,15 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")).render(<App />);
+// Ensure we only create root once to prevent React 18 duplicate root error
+const container = document.getElementById("root");
+let root;
+
+if (!container._reactRoot) {
+  root = createRoot(container);
+  container._reactRoot = root;
+} else {
+  root = container._reactRoot;
+}
+
+root.render(<App />);
