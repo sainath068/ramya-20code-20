@@ -34,10 +34,18 @@ export default function WorkingDashboard() {
     role: "user"
   });
 
-  const [taskForm, setTaskForm] = useState({
+    const [taskForm, setTaskForm] = useState({
     title: "",
     description: "",
     status: "pending"
+  });
+
+  const [profileForm, setProfileForm] = useState({
+    username: "",
+    email: "",
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: ""
   });
 
   const handleLogout = () => {
