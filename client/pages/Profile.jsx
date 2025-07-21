@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { LogOut, User, Settings, ArrowLeft, Mail, UserCheck, Calendar, MapPin, Phone } from "lucide-react";
+import {
+  LogOut,
+  User,
+  Settings,
+  ArrowLeft,
+  Mail,
+  UserCheck,
+  Calendar,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Profile() {
@@ -12,8 +22,10 @@ export default function Profile() {
     fullName: user?.fullName || `${user?.username || ""} User`,
     phone: user?.phone || "+1 (555) 123-4567",
     location: user?.location || "New York, USA",
-    bio: user?.bio || "I'm a passionate professional focused on creating amazing user experiences and building great products.",
-    joinedDate: user?.joinedDate || "January 2024"
+    bio:
+      user?.bio ||
+      "I'm a passionate professional focused on creating amazing user experiences and building great products.",
+    joinedDate: user?.joinedDate || "January 2024",
   });
 
   const handleLogout = () => {
@@ -24,7 +36,7 @@ export default function Profile() {
     // Update user in auth context
     const updatedUser = {
       ...user,
-      ...profileData
+      ...profileData,
     };
     // In a real app, you would save to backend here
     setIsEditing(false);
@@ -33,7 +45,7 @@ export default function Profile() {
   const getInitials = (name) => {
     return name
       .split(" ")
-      .map(n => n[0])
+      .map((n) => n[0])
       .join("")
       .toUpperCase();
   };
@@ -44,7 +56,7 @@ export default function Profile() {
       <header className="border-b border-gray-700 bg-gray-900">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link 
+            <Link
               to="/dashboard"
               className="flex items-center space-x-2 text-gray-300 hover:text-white"
             >
@@ -73,14 +85,20 @@ export default function Profile() {
                 {getInitials(profileData.fullName)}
               </div>
             </div>
-            
+
             {/* User Info */}
             <div className="flex-1">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-white mb-2">{profileData.fullName}</h1>
-                  <p className="text-blue-400 text-lg mb-2">@{profileData.username}</p>
-                  <p className="text-gray-300 text-lg capitalize">{user?.role} User</p>
+                  <h1 className="text-3xl font-bold text-white mb-2">
+                    {profileData.fullName}
+                  </h1>
+                  <p className="text-blue-400 text-lg mb-2">
+                    @{profileData.username}
+                  </p>
+                  <p className="text-gray-300 text-lg capitalize">
+                    {user?.role} User
+                  </p>
                 </div>
                 <div className="mt-4 md:mt-0 flex space-x-3">
                   <button
@@ -107,17 +125,26 @@ export default function Profile() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Personal Information */}
           <div className="bg-gray-800 rounded-lg p-6">
-            <h2 className="text-xl font-bold text-white mb-6">Personal Information</h2>
+            <h2 className="text-xl font-bold text-white mb-6">
+              Personal Information
+            </h2>
             <div className="space-y-6">
               <div className="flex items-start space-x-3">
                 <User className="w-5 h-5 text-blue-400 mt-1" />
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Full Name
+                  </label>
                   {isEditing ? (
                     <input
                       type="text"
                       value={profileData.fullName}
-                      onChange={(e) => setProfileData({...profileData, fullName: e.target.value})}
+                      onChange={(e) =>
+                        setProfileData({
+                          ...profileData,
+                          fullName: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                     />
                   ) : (
@@ -129,12 +156,19 @@ export default function Profile() {
               <div className="flex items-start space-x-3">
                 <UserCheck className="w-5 h-5 text-blue-400 mt-1" />
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Username</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Username
+                  </label>
                   {isEditing ? (
                     <input
                       type="text"
                       value={profileData.username}
-                      onChange={(e) => setProfileData({...profileData, username: e.target.value})}
+                      onChange={(e) =>
+                        setProfileData({
+                          ...profileData,
+                          username: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                     />
                   ) : (
@@ -146,12 +180,19 @@ export default function Profile() {
               <div className="flex items-start space-x-3">
                 <Mail className="w-5 h-5 text-blue-400 mt-1" />
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Email Address
+                  </label>
                   {isEditing ? (
                     <input
                       type="email"
                       value={profileData.email}
-                      onChange={(e) => setProfileData({...profileData, email: e.target.value})}
+                      onChange={(e) =>
+                        setProfileData({
+                          ...profileData,
+                          email: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                     />
                   ) : (
@@ -163,12 +204,19 @@ export default function Profile() {
               <div className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-blue-400 mt-1" />
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Phone Number</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Phone Number
+                  </label>
                   {isEditing ? (
                     <input
                       type="tel"
                       value={profileData.phone}
-                      onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
+                      onChange={(e) =>
+                        setProfileData({
+                          ...profileData,
+                          phone: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                     />
                   ) : (
@@ -180,12 +228,19 @@ export default function Profile() {
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1" />
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">Location</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Location
+                  </label>
                   {isEditing ? (
                     <input
                       type="text"
                       value={profileData.location}
-                      onChange={(e) => setProfileData({...profileData, location: e.target.value})}
+                      onChange={(e) =>
+                        setProfileData({
+                          ...profileData,
+                          location: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                     />
                   ) : (
@@ -221,19 +276,25 @@ export default function Profile() {
               {isEditing ? (
                 <textarea
                   value={profileData.bio}
-                  onChange={(e) => setProfileData({...profileData, bio: e.target.value})}
+                  onChange={(e) =>
+                    setProfileData({ ...profileData, bio: e.target.value })
+                  }
                   rows={4}
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   placeholder="Tell us about yourself..."
                 />
               ) : (
-                <p className="text-gray-300 leading-relaxed">{profileData.bio}</p>
+                <p className="text-gray-300 leading-relaxed">
+                  {profileData.bio}
+                </p>
               )}
             </div>
 
             {/* Account Information */}
             <div className="bg-gray-800 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-white mb-4">Account Information</h2>
+              <h2 className="text-xl font-bold text-white mb-4">
+                Account Information
+              </h2>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <Calendar className="w-5 h-5 text-blue-400" />
@@ -246,7 +307,9 @@ export default function Profile() {
                   <UserCheck className="w-5 h-5 text-blue-400" />
                   <div>
                     <p className="text-sm text-gray-300">Account Type</p>
-                    <p className="text-white capitalize">{user?.role} Account</p>
+                    <p className="text-white capitalize">
+                      {user?.role} Account
+                    </p>
                   </div>
                 </div>
               </div>

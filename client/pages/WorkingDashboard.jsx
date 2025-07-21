@@ -1,12 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { LogOut, User, Plus, Edit, Trash2, X, Settings, ChevronDown } from "lucide-react";
+import {
+  LogOut,
+  User,
+  Plus,
+  Edit,
+  Trash2,
+  X,
+  Settings,
+  ChevronDown,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function WorkingDashboard() {
   const { user, logout } = useAuth();
   const dropdownRef = useRef(null);
-  
+
   // State for users data
   const [users, setUsers] = useState([
     { id: 1, username: "admin", email: "admin@example.com", role: "admin" },
@@ -16,12 +25,27 @@ export default function WorkingDashboard() {
 
   // State for tasks data
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Complete user authentication", description: "Implement login and registration", status: "in-progress" },
-    { id: 2, title: "Design dashboard layout", description: "Create wireframes and design", status: "completed" },
-    { id: 3, title: "Set up database schema", description: "Define tables and relationships", status: "pending" },
+    {
+      id: 1,
+      title: "Complete user authentication",
+      description: "Implement login and registration",
+      status: "in-progress",
+    },
+    {
+      id: 2,
+      title: "Design dashboard layout",
+      description: "Create wireframes and design",
+      status: "completed",
+    },
+    {
+      id: 3,
+      title: "Set up database schema",
+      description: "Define tables and relationships",
+      status: "pending",
+    },
   ]);
 
-    // Modal state
+  // Modal state
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -34,18 +58,18 @@ export default function WorkingDashboard() {
     username: "",
     email: "",
     password: "",
-    role: "user"
+    role: "user",
   });
 
-    const [taskForm, setTaskForm] = useState({
+  const [taskForm, setTaskForm] = useState({
     title: "",
     description: "",
-    status: "pending"
+    status: "pending",
   });
 
   const [profileForm, setProfileForm] = useState({
     username: "",
-    email: ""
+    email: "",
   });
 
   const handleLogout = () => {
@@ -55,7 +79,7 @@ export default function WorkingDashboard() {
   const getInitials = (name) => {
     return name
       .split(" ")
-      .map(n => n[0])
+      .map((n) => n[0])
       .join("")
       .toUpperCase();
   };
@@ -72,7 +96,7 @@ export default function WorkingDashboard() {
       username: userToEdit.username,
       email: userToEdit.email,
       password: "",
-      role: userToEdit.role
+      role: userToEdit.role,
     });
     setEditingUser(userToEdit);
     setIsUserModalOpen(true);
@@ -82,16 +106,18 @@ export default function WorkingDashboard() {
     e.preventDefault();
     if (editingUser) {
       // Update existing user
-      setUsers(users.map(u => 
-        u.id === editingUser.id 
-          ? { ...u, ...userForm, password: undefined }
-          : u
-      ));
+      setUsers(
+        users.map((u) =>
+          u.id === editingUser.id
+            ? { ...u, ...userForm, password: undefined }
+            : u,
+        ),
+      );
     } else {
       // Add new user
       const newUser = {
-        id: Math.max(...users.map(u => u.id)) + 1,
-        ...userForm
+        id: Math.max(...users.map((u) => u.id)) + 1,
+        ...userForm,
       };
       setUsers([...users, newUser]);
     }
@@ -99,7 +125,7 @@ export default function WorkingDashboard() {
   };
 
   const deleteUser = (userId) => {
-    setUsers(users.filter(u => u.id !== userId));
+    setUsers(users.filter((u) => u.id !== userId));
   };
 
   // Task management functions
@@ -113,7 +139,7 @@ export default function WorkingDashboard() {
     setTaskForm({
       title: taskToEdit.title,
       description: taskToEdit.description,
-      status: taskToEdit.status
+      status: taskToEdit.status,
     });
     setEditingTask(taskToEdit);
     setIsTaskModalOpen(true);
@@ -123,31 +149,29 @@ export default function WorkingDashboard() {
     e.preventDefault();
     if (editingTask) {
       // Update existing task
-      setTasks(tasks.map(t => 
-        t.id === editingTask.id 
-          ? { ...t, ...taskForm }
-          : t
-      ));
+      setTasks(
+        tasks.map((t) => (t.id === editingTask.id ? { ...t, ...taskForm } : t)),
+      );
     } else {
       // Add new task
       const newTask = {
-        id: Math.max(...tasks.map(t => t.id)) + 1,
-        ...taskForm
+        id: Math.max(...tasks.map((t) => t.id)) + 1,
+        ...taskForm,
       };
       setTasks([...tasks, newTask]);
     }
     setIsTaskModalOpen(false);
   };
 
-    const deleteTask = (taskId) => {
-    setTasks(tasks.filter(t => t.id !== taskId));
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter((t) => t.id !== taskId));
   };
 
   // Profile management functions
   const openProfileModal = () => {
     setProfileForm({
       username: user.username,
-      email: user.email
+      email: user.email,
     });
     setIsProfileModalOpen(true);
   };
@@ -159,7 +183,7 @@ export default function WorkingDashboard() {
     const updatedUser = {
       ...user,
       username: profileForm.username,
-      email: profileForm.email
+      email: profileForm.email,
     };
 
     login(updatedUser); // Update the user in auth context
@@ -175,9 +199,9 @@ export default function WorkingDashboard() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -193,7 +217,7 @@ export default function WorkingDashboard() {
             <h1 className="text-xl font-bold text-white">UserManager Pro</h1>
           </div>
 
-                    <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
             {/* Profile Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
@@ -204,10 +228,14 @@ export default function WorkingDashboard() {
                   {getInitials(user.username)}
                 </div>
                 <div className="text-left">
-                  <p className="text-sm font-medium text-white">{user.username}</p>
+                  <p className="text-sm font-medium text-white">
+                    {user.username}
+                  </p>
                   <p className="text-xs text-gray-400">{user.email}</p>
                 </div>
-                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 text-gray-400 transition-transform ${isProfileDropdownOpen ? "rotate-180" : ""}`}
+                />
               </button>
 
               {/* Dropdown Menu */}
@@ -219,7 +247,9 @@ export default function WorkingDashboard() {
                         {getInitials(user.username)}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{user.username}</p>
+                        <p className="text-sm font-medium text-gray-900">
+                          {user.username}
+                        </p>
                         <p className="text-xs text-gray-500">{user.email}</p>
                       </div>
                     </div>
@@ -258,8 +288,8 @@ export default function WorkingDashboard() {
             {user.role === "admin" ? "User Management" : "Task Management"}
           </h2>
           <p className="text-gray-400">
-            {user.role === "admin" 
-              ? "Manage users, roles, and permissions" 
+            {user.role === "admin"
+              ? "Manage users, roles, and permissions"
               : "Organize and track your tasks"}
           </p>
         </div>
@@ -268,21 +298,33 @@ export default function WorkingDashboard() {
         <div className="bg-gray-800 rounded-lg p-6">
           {user.role === "admin" ? (
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Admin Dashboard</h3>
-              
+              <h3 className="text-xl font-bold text-white mb-4">
+                Admin Dashboard
+              </h3>
+
               {/* Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Total Users</h4>
-                  <p className="text-2xl font-bold text-white">{users.length}</p>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Total Users
+                  </h4>
+                  <p className="text-2xl font-bold text-white">
+                    {users.length}
+                  </p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
                   <h4 className="text-sm font-medium text-gray-300">Admins</h4>
-                  <p className="text-2xl font-bold text-white">{users.filter(u => u.role === "admin").length}</p>
+                  <p className="text-2xl font-bold text-white">
+                    {users.filter((u) => u.role === "admin").length}
+                  </p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Regular Users</h4>
-                  <p className="text-2xl font-bold text-white">{users.filter(u => u.role === "user").length}</p>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Regular Users
+                  </h4>
+                  <p className="text-2xl font-bold text-white">
+                    {users.filter((u) => u.role === "user").length}
+                  </p>
                 </div>
               </div>
 
@@ -290,7 +332,7 @@ export default function WorkingDashboard() {
               <div className="bg-gray-700 rounded-lg p-4">
                 <div className="flex justify-between items-center mb-4">
                   <h4 className="text-lg font-medium text-white">Users</h4>
-                  <button 
+                  <button
                     onClick={openAddUserModal}
                     className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                   >
@@ -298,7 +340,7 @@ export default function WorkingDashboard() {
                     <span>Add User</span>
                   </button>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
                     <thead>
@@ -311,24 +353,35 @@ export default function WorkingDashboard() {
                     </thead>
                     <tbody>
                       {users.map((userItem) => (
-                        <tr key={userItem.id} className="border-b border-gray-600">
-                          <td className="py-2 text-white">{userItem.username}</td>
-                          <td className="py-2 text-gray-300">{userItem.email}</td>
+                        <tr
+                          key={userItem.id}
+                          className="border-b border-gray-600"
+                        >
+                          <td className="py-2 text-white">
+                            {userItem.username}
+                          </td>
+                          <td className="py-2 text-gray-300">
+                            {userItem.email}
+                          </td>
                           <td className="py-2">
-                            <span className={`px-2 py-1 rounded text-xs ${
-                              userItem.role === "admin" ? "bg-blue-600 text-white" : "bg-gray-600 text-white"
-                            }`}>
+                            <span
+                              className={`px-2 py-1 rounded text-xs ${
+                                userItem.role === "admin"
+                                  ? "bg-blue-600 text-white"
+                                  : "bg-gray-600 text-white"
+                              }`}
+                            >
                               {userItem.role.toUpperCase()}
                             </span>
                           </td>
                           <td className="py-2 space-x-2">
-                            <button 
+                            <button
                               onClick={() => openEditUserModal(userItem)}
                               className="text-blue-400 hover:text-blue-300"
                             >
                               <Edit className="w-4 h-4" />
                             </button>
-                            <button 
+                            <button
                               onClick={() => deleteUser(userItem.id)}
                               className="text-red-400 hover:text-red-300"
                             >
@@ -344,25 +397,41 @@ export default function WorkingDashboard() {
             </div>
           ) : (
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Task Management</h3>
-              
+              <h3 className="text-xl font-bold text-white mb-4">
+                Task Management
+              </h3>
+
               {/* Task Stats */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Total Tasks</h4>
-                  <p className="text-2xl font-bold text-white">{tasks.length}</p>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Total Tasks
+                  </h4>
+                  <p className="text-2xl font-bold text-white">
+                    {tasks.length}
+                  </p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
                   <h4 className="text-sm font-medium text-gray-300">Pending</h4>
-                  <p className="text-2xl font-bold text-white">{tasks.filter(t => t.status === "pending").length}</p>
+                  <p className="text-2xl font-bold text-white">
+                    {tasks.filter((t) => t.status === "pending").length}
+                  </p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">In Progress</h4>
-                  <p className="text-2xl font-bold text-white">{tasks.filter(t => t.status === "in-progress").length}</p>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    In Progress
+                  </h4>
+                  <p className="text-2xl font-bold text-white">
+                    {tasks.filter((t) => t.status === "in-progress").length}
+                  </p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Completed</h4>
-                  <p className="text-2xl font-bold text-white">{tasks.filter(t => t.status === "completed").length}</p>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Completed
+                  </h4>
+                  <p className="text-2xl font-bold text-white">
+                    {tasks.filter((t) => t.status === "completed").length}
+                  </p>
                 </div>
               </div>
 
@@ -370,7 +439,7 @@ export default function WorkingDashboard() {
               <div className="bg-gray-700 rounded-lg p-4">
                 <div className="flex justify-between items-center mb-4">
                   <h4 className="text-lg font-medium text-white">Tasks</h4>
-                  <button 
+                  <button
                     onClick={openAddTaskModal}
                     className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                   >
@@ -378,7 +447,7 @@ export default function WorkingDashboard() {
                     <span>Add Task</span>
                   </button>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
                     <thead>
@@ -393,24 +462,30 @@ export default function WorkingDashboard() {
                       {tasks.map((task) => (
                         <tr key={task.id} className="border-b border-gray-600">
                           <td className="py-2 text-white">{task.title}</td>
-                          <td className="py-2 text-gray-300">{task.description}</td>
+                          <td className="py-2 text-gray-300">
+                            {task.description}
+                          </td>
                           <td className="py-2">
-                            <span className={`px-2 py-1 rounded text-xs ${
-                              task.status === "completed" ? "bg-green-600 text-white" :
-                              task.status === "in-progress" ? "bg-yellow-600 text-white" :
-                              "bg-gray-600 text-white"
-                            }`}>
+                            <span
+                              className={`px-2 py-1 rounded text-xs ${
+                                task.status === "completed"
+                                  ? "bg-green-600 text-white"
+                                  : task.status === "in-progress"
+                                    ? "bg-yellow-600 text-white"
+                                    : "bg-gray-600 text-white"
+                              }`}
+                            >
                               {task.status.replace("-", " ").toUpperCase()}
                             </span>
                           </td>
                           <td className="py-2 space-x-2">
-                            <button 
+                            <button
                               onClick={() => openEditTaskModal(task)}
                               className="text-blue-400 hover:text-blue-300"
                             >
                               <Edit className="w-4 h-4" />
                             </button>
-                            <button 
+                            <button
                               onClick={() => deleteTask(task.id)}
                               className="text-red-400 hover:text-red-300"
                             >
@@ -436,14 +511,14 @@ export default function WorkingDashboard() {
               <h3 className="text-lg font-bold text-white">
                 {editingUser ? "Edit User" : "Add New User"}
               </h3>
-              <button 
+              <button
                 onClick={() => setIsUserModalOpen(false)}
                 className="text-gray-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <form onSubmit={handleUserSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -452,12 +527,14 @@ export default function WorkingDashboard() {
                 <input
                   type="text"
                   value={userForm.username}
-                  onChange={(e) => setUserForm({...userForm, username: e.target.value})}
+                  onChange={(e) =>
+                    setUserForm({ ...userForm, username: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
                   Email
@@ -465,12 +542,14 @@ export default function WorkingDashboard() {
                 <input
                   type="email"
                   value={userForm.email}
-                  onChange={(e) => setUserForm({...userForm, email: e.target.value})}
+                  onChange={(e) =>
+                    setUserForm({ ...userForm, email: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
                   Password {editingUser && "(leave blank to keep current)"}
@@ -478,26 +557,30 @@ export default function WorkingDashboard() {
                 <input
                   type="password"
                   value={userForm.password}
-                  onChange={(e) => setUserForm({...userForm, password: e.target.value})}
+                  onChange={(e) =>
+                    setUserForm({ ...userForm, password: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   required={!editingUser}
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
                   Role
                 </label>
                 <select
                   value={userForm.role}
-                  onChange={(e) => setUserForm({...userForm, role: e.target.value})}
+                  onChange={(e) =>
+                    setUserForm({ ...userForm, role: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
                 </select>
               </div>
-              
+
               <div className="flex justify-end space-x-2 pt-4">
                 <button
                   type="button"
@@ -526,14 +609,14 @@ export default function WorkingDashboard() {
               <h3 className="text-lg font-bold text-white">
                 {editingTask ? "Edit Task" : "Add New Task"}
               </h3>
-              <button 
+              <button
                 onClick={() => setIsTaskModalOpen(false)}
                 className="text-gray-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <form onSubmit={handleTaskSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -542,32 +625,38 @@ export default function WorkingDashboard() {
                 <input
                   type="text"
                   value={taskForm.title}
-                  onChange={(e) => setTaskForm({...taskForm, title: e.target.value})}
+                  onChange={(e) =>
+                    setTaskForm({ ...taskForm, title: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
                   Description
                 </label>
                 <textarea
                   value={taskForm.description}
-                  onChange={(e) => setTaskForm({...taskForm, description: e.target.value})}
+                  onChange={(e) =>
+                    setTaskForm({ ...taskForm, description: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   rows={3}
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">
                   Status
                 </label>
                 <select
                   value={taskForm.status}
-                  onChange={(e) => setTaskForm({...taskForm, status: e.target.value})}
+                  onChange={(e) =>
+                    setTaskForm({ ...taskForm, status: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                 >
                   <option value="pending">Pending</option>
@@ -575,7 +664,7 @@ export default function WorkingDashboard() {
                   <option value="completed">Completed</option>
                 </select>
               </div>
-              
+
               <div className="flex justify-end space-x-2 pt-4">
                 <button
                   type="button"
@@ -592,7 +681,7 @@ export default function WorkingDashboard() {
                 </button>
               </div>
             </form>
-                    </div>
+          </div>
         </div>
       )}
 
@@ -618,7 +707,9 @@ export default function WorkingDashboard() {
                 <input
                   type="text"
                   value={profileForm.username}
-                  onChange={(e) => setProfileForm({...profileForm, username: e.target.value})}
+                  onChange={(e) =>
+                    setProfileForm({ ...profileForm, username: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   required
                 />
@@ -631,13 +722,13 @@ export default function WorkingDashboard() {
                 <input
                   type="email"
                   value={profileForm.email}
-                  onChange={(e) => setProfileForm({...profileForm, email: e.target.value})}
+                  onChange={(e) =>
+                    setProfileForm({ ...profileForm, email: e.target.value })
+                  }
                   className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
                   required
                 />
               </div>
-
-
 
               <div className="flex justify-end space-x-2 pt-4">
                 <button
