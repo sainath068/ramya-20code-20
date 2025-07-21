@@ -172,8 +172,15 @@ export default function WorkingDashboard() {
     setIsTaskModalOpen(false);
   };
 
+  const confirmDeleteTask = (taskId, taskTitle) => {
+    setDeleteTarget({ type: 'task', id: taskId, name: taskTitle });
+    setIsDeleteConfirmOpen(true);
+  };
+
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((t) => t.id !== taskId));
+    setIsDeleteConfirmOpen(false);
+    setDeleteTarget(null);
   };
 
   // Profile management functions
