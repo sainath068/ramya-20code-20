@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "../App";
+import { useAuth } from "../contexts/AuthContext";
 import UserManagement from "../components/UserManagement";
 import TaskManagement from "../components/TaskManagement";
 import { LogOut, User, Settings, ChevronDown } from "lucide-react";
