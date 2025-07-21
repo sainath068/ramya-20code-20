@@ -136,10 +136,7 @@ export default function WorkingDashboard() {
   const openProfileModal = () => {
     setProfileForm({
       username: user.username,
-      email: user.email,
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: ""
+      email: user.email
     });
     setIsProfileModalOpen(true);
   };
