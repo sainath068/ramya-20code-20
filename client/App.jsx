@@ -21,8 +21,8 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={!user ? <Login /> : <Dashboard />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/" element={!user ? <Login /> : <FixedDashboard />} />
+      <Route path="/dashboard" element={<FixedDashboard />} />
       <Route path="/test" element={<TestDashboard />} />
       <Route path="/simple" element={<SimpleTest />} />
       <Route path="*" element={<NotFound />} />
