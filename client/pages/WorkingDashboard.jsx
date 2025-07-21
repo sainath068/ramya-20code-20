@@ -195,7 +195,7 @@ export default function WorkingDashboard() {
 
                     <div className="flex items-center space-x-4">
             {/* Profile Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                 className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition-colors"
