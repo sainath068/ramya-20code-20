@@ -8,10 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import WorkingDashboard from "./pages/WorkingDashboard";
-import TestDashboard from "./pages/TestDashboard";
-import SimpleTest from "./pages/SimpleTest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
