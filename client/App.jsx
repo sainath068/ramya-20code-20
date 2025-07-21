@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import TestDashboard from "./pages/TestDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
