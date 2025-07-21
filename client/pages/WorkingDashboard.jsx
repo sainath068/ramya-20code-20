@@ -398,7 +398,7 @@ export default function WorkingDashboard() {
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => deleteUser(userItem.id)}
+                              onClick={() => confirmDeleteUser(userItem.id, userItem.username)}
                               className="text-red-400 hover:text-red-300"
                             >
                               <Trash2 className="w-4 h-4" />
