@@ -21,6 +21,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={!user ? <Login /> : <Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/test" element={<TestDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
