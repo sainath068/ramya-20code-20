@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { LogOut, User, Plus, Edit, Trash2, X } from "lucide-react";
+import { LogOut, User, Plus, Edit, Trash2, X, Settings } from "lucide-react";
 
 export default function WorkingDashboard() {
   const { user, logout } = useAuth();
