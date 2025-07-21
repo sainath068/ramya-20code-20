@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function WorkingDashboard() {
   const { user, logout } = useAuth();
+  const dropdownRef = useRef(null);
   
   // State for users data
   const [users, setUsers] = useState([
