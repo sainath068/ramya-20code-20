@@ -594,48 +594,7 @@ export default function WorkingDashboard() {
                 />
               </div>
 
-              <div className="border-t border-gray-600 pt-4">
-                <h4 className="text-sm font-medium text-gray-300 mb-3">Change Password (Optional)</h4>
 
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">
-                    Current Password
-                  </label>
-                  <input
-                    type="password"
-                    value={profileForm.currentPassword}
-                    onChange={(e) => setProfileForm({...profileForm, currentPassword: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
-                    placeholder="Enter current password"
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label className="block text-sm font-medium text-gray-300 mb-1">
-                    New Password
-                  </label>
-                  <input
-                    type="password"
-                    value={profileForm.newPassword}
-                    onChange={(e) => setProfileForm({...profileForm, newPassword: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
-                    placeholder="Enter new password"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-1">
-                    Confirm New Password
-                  </label>
-                  <input
-                    type="password"
-                    value={profileForm.confirmPassword}
-                    onChange={(e) => setProfileForm({...profileForm, confirmPassword: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-700 text-white rounded border border-gray-600 focus:border-blue-500 focus:outline-none"
-                    placeholder="Confirm new password"
-                  />
-                </div>
-              </div>
 
               <div className="flex justify-end space-x-2 pt-4">
                 <button
