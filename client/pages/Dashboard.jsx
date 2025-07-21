@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { 
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "../contexts/AuthContext";
 import UserManagement from "../components/UserManagement";
@@ -25,7 +25,7 @@ export default function Dashboard() {
   const getInitials = (name) => {
     return name
       .split(" ")
-      .map(n => n[0])
+      .map((n) => n[0])
       .join("")
       .toUpperCase();
   };
@@ -39,13 +39,17 @@ export default function Dashboard() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <User className="w-5 h-5 text-primary-foreground" />
             </div>
-            <h1 className="text-xl font-bold text-foreground">UserManager Pro</h1>
+            <h1 className="text-xl font-bold text-foreground">
+              UserManager Pro
+            </h1>
           </div>
 
           <div className="flex items-center space-x-4">
             <div className="hidden sm:flex items-center space-x-2 text-sm text-muted-foreground">
               <span>Welcome,</span>
-              <span className="font-medium text-foreground">{user.username}</span>
+              <span className="font-medium text-foreground">
+                {user.username}
+              </span>
               <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
                 {user.role.toUpperCase()}
               </span>
@@ -53,7 +57,10 @@ export default function Dashboard() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-2 h-10">
+                <Button
+                  variant="ghost"
+                  className="flex items-center space-x-2 h-10"
+                >
                   <Avatar className="w-8 h-8">
                     <AvatarFallback className="bg-primary/10 text-primary text-sm">
                       {getInitials(user.username)}
@@ -73,7 +80,10 @@ export default function Dashboard() {
                   Settings
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout} className="text-destructive">
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="text-destructive"
+                >
                   <LogOut className="w-4 h-4 mr-2" />
                   Logout
                 </DropdownMenuItem>
@@ -90,8 +100,8 @@ export default function Dashboard() {
             {user.role === "admin" ? "User Management" : "Task Management"}
           </h2>
           <p className="text-muted-foreground">
-            {user.role === "admin" 
-              ? "Manage users, roles, and permissions" 
+            {user.role === "admin"
+              ? "Manage users, roles, and permissions"
               : "Organize and track your tasks"}
           </p>
         </div>

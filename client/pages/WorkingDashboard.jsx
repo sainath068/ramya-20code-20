@@ -46,8 +46,8 @@ export default function WorkingDashboard() {
             {user.role === "admin" ? "User Management" : "Task Management"}
           </h2>
           <p className="text-gray-400">
-            {user.role === "admin" 
-              ? "Manage users, roles, and permissions" 
+            {user.role === "admin"
+              ? "Manage users, roles, and permissions"
               : "Organize and track your tasks"}
           </p>
         </div>
@@ -56,12 +56,16 @@ export default function WorkingDashboard() {
         <div className="bg-gray-800 rounded-lg p-6">
           {user.role === "admin" ? (
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Admin Dashboard</h3>
-              
+              <h3 className="text-xl font-bold text-white mb-4">
+                Admin Dashboard
+              </h3>
+
               {/* Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Total Users</h4>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Total Users
+                  </h4>
                   <p className="text-2xl font-bold text-white">3</p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
@@ -69,7 +73,9 @@ export default function WorkingDashboard() {
                   <p className="text-2xl font-bold text-white">1</p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Regular Users</h4>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Regular Users
+                  </h4>
                   <p className="text-2xl font-bold text-white">2</p>
                 </div>
               </div>
@@ -82,7 +88,7 @@ export default function WorkingDashboard() {
                     Add User
                   </button>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
                     <thead>
@@ -96,35 +102,55 @@ export default function WorkingDashboard() {
                     <tbody>
                       <tr className="border-b border-gray-600">
                         <td className="py-2 text-white">admin</td>
-                        <td className="py-2 text-gray-300">admin@example.com</td>
-                        <td className="py-2">
-                          <span className="px-2 py-1 bg-blue-600 text-white rounded text-xs">ADMIN</span>
+                        <td className="py-2 text-gray-300">
+                          admin@example.com
                         </td>
                         <td className="py-2">
-                          <button className="mr-2 text-blue-400 hover:text-blue-300">Edit</button>
-                          <button className="text-red-400 hover:text-red-300">Delete</button>
+                          <span className="px-2 py-1 bg-blue-600 text-white rounded text-xs">
+                            ADMIN
+                          </span>
+                        </td>
+                        <td className="py-2">
+                          <button className="mr-2 text-blue-400 hover:text-blue-300">
+                            Edit
+                          </button>
+                          <button className="text-red-400 hover:text-red-300">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr className="border-b border-gray-600">
                         <td className="py-2 text-white">john_doe</td>
                         <td className="py-2 text-gray-300">john@example.com</td>
                         <td className="py-2">
-                          <span className="px-2 py-1 bg-gray-600 text-white rounded text-xs">USER</span>
+                          <span className="px-2 py-1 bg-gray-600 text-white rounded text-xs">
+                            USER
+                          </span>
                         </td>
                         <td className="py-2">
-                          <button className="mr-2 text-blue-400 hover:text-blue-300">Edit</button>
-                          <button className="text-red-400 hover:text-red-300">Delete</button>
+                          <button className="mr-2 text-blue-400 hover:text-blue-300">
+                            Edit
+                          </button>
+                          <button className="text-red-400 hover:text-red-300">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
                         <td className="py-2 text-white">jane_smith</td>
                         <td className="py-2 text-gray-300">jane@example.com</td>
                         <td className="py-2">
-                          <span className="px-2 py-1 bg-gray-600 text-white rounded text-xs">USER</span>
+                          <span className="px-2 py-1 bg-gray-600 text-white rounded text-xs">
+                            USER
+                          </span>
                         </td>
                         <td className="py-2">
-                          <button className="mr-2 text-blue-400 hover:text-blue-300">Edit</button>
-                          <button className="text-red-400 hover:text-red-300">Delete</button>
+                          <button className="mr-2 text-blue-400 hover:text-blue-300">
+                            Edit
+                          </button>
+                          <button className="text-red-400 hover:text-red-300">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     </tbody>
@@ -134,12 +160,16 @@ export default function WorkingDashboard() {
             </div>
           ) : (
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Task Management</h3>
-              
+              <h3 className="text-xl font-bold text-white mb-4">
+                Task Management
+              </h3>
+
               {/* Task Stats */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Total Tasks</h4>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Total Tasks
+                  </h4>
                   <p className="text-2xl font-bold text-white">3</p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
@@ -147,11 +177,15 @@ export default function WorkingDashboard() {
                   <p className="text-2xl font-bold text-white">1</p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">In Progress</h4>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    In Progress
+                  </h4>
                   <p className="text-2xl font-bold text-white">1</p>
                 </div>
                 <div className="bg-gray-700 p-4 rounded-lg">
-                  <h4 className="text-sm font-medium text-gray-300">Completed</h4>
+                  <h4 className="text-sm font-medium text-gray-300">
+                    Completed
+                  </h4>
                   <p className="text-2xl font-bold text-white">1</p>
                 </div>
               </div>
@@ -164,7 +198,7 @@ export default function WorkingDashboard() {
                     Add Task
                   </button>
                 </div>
-                
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
                     <thead>
@@ -177,36 +211,66 @@ export default function WorkingDashboard() {
                     </thead>
                     <tbody>
                       <tr className="border-b border-gray-600">
-                        <td className="py-2 text-white">Complete user authentication</td>
-                        <td className="py-2 text-gray-300">Implement login and registration</td>
-                        <td className="py-2">
-                          <span className="px-2 py-1 bg-yellow-600 text-white rounded text-xs">IN PROGRESS</span>
+                        <td className="py-2 text-white">
+                          Complete user authentication
+                        </td>
+                        <td className="py-2 text-gray-300">
+                          Implement login and registration
                         </td>
                         <td className="py-2">
-                          <button className="mr-2 text-blue-400 hover:text-blue-300">Edit</button>
-                          <button className="text-red-400 hover:text-red-300">Delete</button>
+                          <span className="px-2 py-1 bg-yellow-600 text-white rounded text-xs">
+                            IN PROGRESS
+                          </span>
+                        </td>
+                        <td className="py-2">
+                          <button className="mr-2 text-blue-400 hover:text-blue-300">
+                            Edit
+                          </button>
+                          <button className="text-red-400 hover:text-red-300">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr className="border-b border-gray-600">
-                        <td className="py-2 text-white">Design dashboard layout</td>
-                        <td className="py-2 text-gray-300">Create wireframes and design</td>
-                        <td className="py-2">
-                          <span className="px-2 py-1 bg-green-600 text-white rounded text-xs">COMPLETED</span>
+                        <td className="py-2 text-white">
+                          Design dashboard layout
+                        </td>
+                        <td className="py-2 text-gray-300">
+                          Create wireframes and design
                         </td>
                         <td className="py-2">
-                          <button className="mr-2 text-blue-400 hover:text-blue-300">Edit</button>
-                          <button className="text-red-400 hover:text-red-300">Delete</button>
+                          <span className="px-2 py-1 bg-green-600 text-white rounded text-xs">
+                            COMPLETED
+                          </span>
+                        </td>
+                        <td className="py-2">
+                          <button className="mr-2 text-blue-400 hover:text-blue-300">
+                            Edit
+                          </button>
+                          <button className="text-red-400 hover:text-red-300">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
-                        <td className="py-2 text-white">Set up database schema</td>
-                        <td className="py-2 text-gray-300">Define tables and relationships</td>
-                        <td className="py-2">
-                          <span className="px-2 py-1 bg-gray-600 text-white rounded text-xs">PENDING</span>
+                        <td className="py-2 text-white">
+                          Set up database schema
+                        </td>
+                        <td className="py-2 text-gray-300">
+                          Define tables and relationships
                         </td>
                         <td className="py-2">
-                          <button className="mr-2 text-blue-400 hover:text-blue-300">Edit</button>
-                          <button className="text-red-400 hover:text-red-300">Delete</button>
+                          <span className="px-2 py-1 bg-gray-600 text-white rounded text-xs">
+                            PENDING
+                          </span>
+                        </td>
+                        <td className="py-2">
+                          <button className="mr-2 text-blue-400 hover:text-blue-300">
+                            Edit
+                          </button>
+                          <button className="text-red-400 hover:text-red-300">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     </tbody>

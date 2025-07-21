@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { useAuth } from "../contexts/AuthContext";
 import { toast } from "sonner";
 import { Eye, EyeOff, User, Lock } from "lucide-react";
@@ -20,15 +26,15 @@ export default function Login() {
 
     try {
       // Simulate authentication - in real app, this would be an API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Mock authentication logic
       if (email === "admin@example.com" && password === "admin123") {
         login({
           id: 1,
           email: "admin@example.com",
           username: "Admin",
-          role: "admin"
+          role: "admin",
         });
         toast.success("Welcome back, Admin!");
       } else if (email === "user@example.com" && password === "user123") {
@@ -36,7 +42,7 @@ export default function Login() {
           id: 2,
           email: "user@example.com",
           username: "User",
-          role: "user"
+          role: "user",
         });
         toast.success("Welcome back!");
       } else {
@@ -53,18 +59,16 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-background/80 p-4">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
-      
+
       <Card className="w-full max-w-md relative border-border/50 bg-card/80 backdrop-blur-sm">
         <CardHeader className="text-center space-y-4">
           <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
             <User className="w-8 h-8 text-primary" />
           </div>
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-          <CardDescription>
-            Sign in to your account to continue
-          </CardDescription>
+          <CardDescription>Sign in to your account to continue</CardDescription>
         </CardHeader>
-        
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
@@ -79,7 +83,7 @@ export default function Login() {
                 className="h-11"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative">
@@ -108,9 +112,9 @@ export default function Login() {
               </div>
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full h-11 mt-6" 
+            <Button
+              type="submit"
+              className="w-full h-11 mt-6"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -128,7 +132,9 @@ export default function Login() {
           </form>
 
           <div className="mt-6 p-4 bg-muted/30 rounded-lg">
-            <p className="text-sm text-muted-foreground text-center mb-2">Demo Credentials:</p>
+            <p className="text-sm text-muted-foreground text-center mb-2">
+              Demo Credentials:
+            </p>
             <div className="space-y-1 text-xs">
               <div className="flex justify-between">
                 <span className="font-medium">Admin:</span>

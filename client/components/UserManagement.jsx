@@ -26,7 +26,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Plus, Edit, Trash2, User, Users, Shield, Search } from "lucide-react";
 import { toast } from "sonner";
 
@@ -44,12 +50,13 @@ export default function UserManagement() {
     username: "",
     email: "",
     password: "",
-    role: "user"
+    role: "user",
   });
 
-  const filteredUsers = users.filter(user =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const resetForm = () => {
@@ -67,7 +74,7 @@ export default function UserManagement() {
       username: user.username,
       email: user.email,
       password: "",
-      role: user.role
+      role: user.role,
     });
     setEditingUser(user);
     setIsDialogOpen(true);
@@ -75,36 +82,42 @@ export default function UserManagement() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (editingUser) {
       // Edit user
-      setUsers(users.map(user => 
-        user.id === editingUser.id 
-          ? { ...user, ...formData, password: undefined }
-          : user
-      ));
+      setUsers(
+        users.map((user) =>
+          user.id === editingUser.id
+            ? { ...user, ...formData, password: undefined }
+            : user,
+        ),
+      );
       toast.success("User updated successfully");
     } else {
       // Add new user
       const newUser = {
-        id: Math.max(...users.map(u => u.id)) + 1,
-        ...formData
+        id: Math.max(...users.map((u) => u.id)) + 1,
+        ...formData,
       };
       setUsers([...users, newUser]);
       toast.success("User added successfully");
     }
-    
+
     setIsDialogOpen(false);
     resetForm();
   };
 
   const handleDelete = (userId) => {
-    setUsers(users.filter(user => user.id !== userId));
+    setUsers(users.filter((user) => user.id !== userId));
     toast.success("User deleted successfully");
   };
 
   const getRoleIcon = (role) => {
-    return role === "admin" ? <Shield className="w-4 h-4" /> : <User className="w-4 h-4" />;
+    return role === "admin" ? (
+      <Shield className="w-4 h-4" />
+    ) : (
+      <User className="w-4 h-4" />
+    );
   };
 
   const getRoleBadgeVariant = (role) => {
@@ -124,7 +137,7 @@ export default function UserManagement() {
             <div className="text-2xl font-bold">{users.length}</div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Admins</CardTitle>
@@ -132,11 +145,11 @@ export default function UserManagement() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {users.filter(u => u.role === "admin").length}
+              {users.filter((u) => u.role === "admin").length}
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Regular Users</CardTitle>
@@ -144,7 +157,7 @@ export default function UserManagement() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {users.filter(u => u.role === "user").length}
+              {users.filter((u) => u.role === "user").length}
             </div>
           </CardContent>
         </Card>
@@ -156,15 +169,20 @@ export default function UserManagement() {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
             <div>
               <CardTitle>Users</CardTitle>
-              <CardDescription>Manage user accounts and permissions</CardDescription>
+              <CardDescription>
+                Manage user accounts and permissions
+              </CardDescription>
             </div>
-            <Button onClick={openAddDialog} className="flex items-center space-x-2">
+            <Button
+              onClick={openAddDialog}
+              className="flex items-center space-x-2"
+            >
               <Plus className="w-4 h-4" />
               <span>Add User</span>
             </Button>
           </div>
         </CardHeader>
-        
+
         <CardContent>
           {/* Search */}
           <div className="flex items-center space-x-2 mb-6">
@@ -193,17 +211,25 @@ export default function UserManagement() {
               <TableBody>
                 {filteredUsers.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
+                    <TableCell
+                      colSpan={4}
+                      className="text-center py-8 text-muted-foreground"
+                    >
                       No users found
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredUsers.map((user) => (
                     <TableRow key={user.id}>
-                      <TableCell className="font-medium">{user.username}</TableCell>
+                      <TableCell className="font-medium">
+                        {user.username}
+                      </TableCell>
                       <TableCell>{user.email}</TableCell>
                       <TableCell>
-                        <Badge variant={getRoleBadgeVariant(user.role)} className="flex items-center space-x-1 w-fit">
+                        <Badge
+                          variant={getRoleBadgeVariant(user.role)}
+                          className="flex items-center space-x-1 w-fit"
+                        >
                           {getRoleIcon(user.role)}
                           <span>{user.role}</span>
                         </Badge>
@@ -244,19 +270,21 @@ export default function UserManagement() {
               {editingUser ? "Edit User" : "Add New User"}
             </DialogTitle>
             <DialogDescription>
-              {editingUser 
-                ? "Update user information and permissions." 
+              {editingUser
+                ? "Update user information and permissions."
                 : "Create a new user account with the specified details."}
             </DialogDescription>
           </DialogHeader>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
               <Input
                 id="username"
                 value={formData.username}
-                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
                 placeholder="Enter username"
                 required
               />
@@ -268,7 +296,9 @@ export default function UserManagement() {
                 id="email"
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 placeholder="Enter email address"
                 required
               />
@@ -282,7 +312,9 @@ export default function UserManagement() {
                 id="password"
                 type="password"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 placeholder="Enter password"
                 required={!editingUser}
               />
@@ -292,7 +324,9 @@ export default function UserManagement() {
               <Label htmlFor="role">Role</Label>
               <Select
                 value={formData.role}
-                onValueChange={(value) => setFormData({ ...formData, role: value })}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, role: value })
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select role" />
@@ -305,7 +339,11 @@ export default function UserManagement() {
             </div>
 
             <div className="flex justify-end space-x-2 pt-4">
-              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setIsDialogOpen(false)}
+              >
                 Cancel
               </Button>
               <Button type="submit">
