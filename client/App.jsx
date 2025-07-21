@@ -46,13 +46,9 @@ const AuthProvider = ({ children }) => {
 const AppRoutes = () => {
   const { user } = useAuth();
 
-  if (!user) {
-    return <Login />;
-  }
-
   return (
-        <Routes>
-      <Route path="/" element={<Dashboard />} />
+    <Routes>
+      <Route path="/" element={!user ? <Login /> : <Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/admin-test" element={<AdminTest />} />
       <Route path="*" element={<NotFound />} />
