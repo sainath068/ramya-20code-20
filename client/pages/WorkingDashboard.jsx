@@ -127,7 +127,7 @@ export default function WorkingDashboard() {
   };
 
   const confirmDeleteUser = (userId, username) => {
-    setDeleteTarget({ type: 'user', id: userId, name: username });
+    setDeleteTarget({ type: "user", id: userId, name: username });
     setIsDeleteConfirmOpen(true);
   };
 
@@ -173,7 +173,7 @@ export default function WorkingDashboard() {
   };
 
   const confirmDeleteTask = (taskId, taskTitle) => {
-    setDeleteTarget({ type: 'task', id: taskId, name: taskTitle });
+    setDeleteTarget({ type: "task", id: taskId, name: taskTitle });
     setIsDeleteConfirmOpen(true);
   };
 
@@ -398,7 +398,12 @@ export default function WorkingDashboard() {
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => confirmDeleteUser(userItem.id, userItem.username)}
+                              onClick={() =>
+                                confirmDeleteUser(
+                                  userItem.id,
+                                  userItem.username,
+                                )
+                              }
                               className="text-red-400 hover:text-red-300"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -502,7 +507,9 @@ export default function WorkingDashboard() {
                               <Edit className="w-4 h-4" />
                             </button>
                             <button
-                              onClick={() => confirmDeleteTask(task.id, task.title)}
+                              onClick={() =>
+                                confirmDeleteTask(task.id, task.title)
+                              }
                               className="text-red-400 hover:text-red-300"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -776,7 +783,9 @@ export default function WorkingDashboard() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white">Confirm Delete</h3>
-                <p className="text-sm text-gray-300">This action cannot be undone</p>
+                <p className="text-sm text-gray-300">
+                  This action cannot be undone
+                </p>
               </div>
             </div>
 
@@ -786,7 +795,10 @@ export default function WorkingDashboard() {
               </p>
               <div className="bg-gray-700 p-3 rounded border-l-4 border-red-500">
                 <p className="text-sm text-gray-300">
-                  <span className="font-medium text-white">{deleteTarget.type === 'user' ? 'User' : 'Task'}:</span> {deleteTarget.name}
+                  <span className="font-medium text-white">
+                    {deleteTarget.type === "user" ? "User" : "Task"}:
+                  </span>{" "}
+                  {deleteTarget.name}
                 </p>
               </div>
             </div>
@@ -803,7 +815,7 @@ export default function WorkingDashboard() {
               </button>
               <button
                 onClick={() => {
-                  if (deleteTarget.type === 'user') {
+                  if (deleteTarget.type === "user") {
                     deleteUser(deleteTarget.id);
                   } else {
                     deleteTask(deleteTarget.id);
@@ -812,7 +824,9 @@ export default function WorkingDashboard() {
                 className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 flex items-center space-x-2"
               >
                 <Trash2 className="w-4 h-4" />
-                <span>Delete {deleteTarget.type === 'user' ? 'User' : 'Task'}</span>
+                <span>
+                  Delete {deleteTarget.type === "user" ? "User" : "Task"}
+                </span>
               </button>
             </div>
           </div>
