@@ -42,10 +42,7 @@ export default function WorkingDashboard() {
 
   const [profileForm, setProfileForm] = useState({
     username: "",
-    email: "",
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: ""
+    email: ""
   });
 
   const handleLogout = () => {
