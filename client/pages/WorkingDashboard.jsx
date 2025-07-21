@@ -185,9 +185,6 @@ export default function WorkingDashboard() {
             <div className="text-sm text-gray-300">
               <span>Welcome, </span>
               <span className="font-medium text-white">{user.username}</span>
-              <span className="ml-2 px-2 py-1 bg-blue-600 text-white rounded-full text-xs font-medium">
-                {user.role.toUpperCase()}
-              </span>
             </div>
 
             {/* Profile Button */}
