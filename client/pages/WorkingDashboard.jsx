@@ -19,9 +19,10 @@ export default function WorkingDashboard() {
     { id: 3, title: "Set up database schema", description: "Define tables and relationships", status: "pending" },
   ]);
 
-  // Modal state
+    // Modal state
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
   const [editingTask, setEditingTask] = useState(null);
 
