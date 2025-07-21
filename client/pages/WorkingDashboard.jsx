@@ -131,8 +131,42 @@ export default function WorkingDashboard() {
     setIsTaskModalOpen(false);
   };
 
-  const deleteTask = (taskId) => {
+    const deleteTask = (taskId) => {
     setTasks(tasks.filter(t => t.id !== taskId));
+  };
+
+  // Profile management functions
+  const openProfileModal = () => {
+    setProfileForm({
+      username: user.username,
+      email: user.email,
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: ""
+    });
+    setIsProfileModalOpen(true);
+  };
+
+  const handleProfileSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate passwords match if changing password
+    if (profileForm.newPassword && profileForm.newPassword !== profileForm.confirmPassword) {
+      alert("New passwords don't match!");
+      return;
+    }
+
+    // In a real app, you would validate current password and update user data
+    // For demo purposes, we'll just update the auth context
+    const updatedUser = {
+      ...user,
+      username: profileForm.username,
+      email: profileForm.email
+    };
+
+    login(updatedUser); // Update the user in auth context
+    setIsProfileModalOpen(false);
+    alert("Profile updated successfully!");
   };
 
   return (
