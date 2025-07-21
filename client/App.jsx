@@ -19,7 +19,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={!user ? <Login /> : <WorkingDashboard />} />
-      <Route path="/dashboard" element={<WorkingDashboard />} />
+      <Route path="/dashboard" element={!user ? <Login /> : <WorkingDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
