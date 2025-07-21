@@ -181,7 +181,7 @@ export default function WorkingDashboard() {
             <h1 className="text-xl font-bold text-white">UserManager Pro</h1>
           </div>
 
-          <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-4">
             <div className="text-sm text-gray-300">
               <span>Welcome, </span>
               <span className="font-medium text-white">{user.username}</span>
@@ -189,6 +189,17 @@ export default function WorkingDashboard() {
                 {user.role.toUpperCase()}
               </span>
             </div>
+
+            {/* Profile Button */}
+            <button
+              onClick={openProfileModal}
+              className="flex items-center space-x-1 px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700"
+              title="Edit Profile"
+            >
+              <Settings className="w-4 h-4" />
+              <span>Profile</span>
+            </button>
+
             <button
               onClick={handleLogout}
               className="flex items-center space-x-1 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
