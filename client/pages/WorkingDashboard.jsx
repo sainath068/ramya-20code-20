@@ -144,14 +144,7 @@ export default function WorkingDashboard() {
   const handleProfileSubmit = (e) => {
     e.preventDefault();
 
-    // Validate passwords match if changing password
-    if (profileForm.newPassword && profileForm.newPassword !== profileForm.confirmPassword) {
-      alert("New passwords don't match!");
-      return;
-    }
-
-    // In a real app, you would validate current password and update user data
-    // For demo purposes, we'll just update the auth context
+    // Update the user in auth context
     const updatedUser = {
       ...user,
       username: profileForm.username,
